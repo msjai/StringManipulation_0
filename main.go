@@ -111,7 +111,7 @@ func kUniques(s string, k int) {
 
 	fmt.Print("Длина наибольшей подстроки: ")
 	fmt.Println(max_window_size)
-	fmt.Println("Наибольшая подстрока: ")
+	fmt.Print("Наибольшая подстрока: ")
 	fmt.Print(s[max_window_start : max_window_start+max_window_size])
 
 }
