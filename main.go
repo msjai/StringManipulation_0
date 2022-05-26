@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"log"
 	"os"
-	"regexp"
 	"unicode/utf8"
 )
 
@@ -18,32 +17,23 @@ func main() {
 	fmt.Print("Введите строку из малых латинских букв: ")
 	fmt.Scan(&S)
 
-	matched, _ := regexp.MatchString(`^[a-z]+$`, S)
+	matched := IsLetter(S)
 
 	if matched == false {
 		log.Fatalln("Строка не соотвествует условию!")
 	}
 
-	//AllSymbolsAreEqual(S) //Альтернативный механизм проверки на то, что все символы в строке одинаковые
 	kUniques(S, k)
 
 }
 
-//Альтернативный механизм проверки на то, что все символы в строке одинаковые
-func AllSymbolsAreEqual(NewStr string) {
-
-	var MaxLenght = utf8.RuneCountInString(NewStr)
-
-	for i := 1; i < MaxLenght; i++ {
-		if NewStr[i] != NewStr[0] {
-			return
+func IsLetter(s string) bool {
+	for _, r := range s {
+		if r < 'a' || r > 'z' {
+			return false
 		}
 	}
-
-	fmt.Print("Длина наибольшей подстроки: ")
-	fmt.Print(MaxLenght)
-
-	os.Exit(0)
+	return true
 }
 
 func isValid(count []int, k int) bool {
